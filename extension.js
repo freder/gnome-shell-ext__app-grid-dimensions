@@ -1,7 +1,9 @@
-const { Clutter, Shell, GObject } = imports.gi;
+const { GObject, Clutter } = imports.gi;
 const Main = imports.ui.main;
 const IconGrid = imports.ui.iconGrid;
 const AppDisplay = imports.ui.appDisplay;
+
+const { appDisplay } = Main.overview._overview.controls;
 
 
 class Extension {
@@ -10,8 +12,7 @@ class Extension {
 
 	enable() {
 		// more rows and columns in application overview grid
-		const { appDisplay } = Main.overview._overview.controls;
-		appDisplay._grid._gridModes.push({ columns: 10, rows: 4 });
+		this.originalGridModes = [...appDisplay._grid._gridModes];
 		const gridCols = 10; // TODO: get from settings
 		const gridRows = 4;
 		appDisplay._grid._gridModes.push({
@@ -21,6 +22,7 @@ class Extension {
 		appDisplay._grid._setGridMode(appDisplay._grid._gridModes.length - 1);
 
 		// more rows and columns in application folder
+		this.OriginalFolderGrid = AppDisplay.FolderGrid;
 		const folderCols = 8; // TODO: get from settings
 		const folderRows = 4;
 		// https://gitlab.gnome.org/GNOME/gnome-shell/-/blob/main/js/ui/appDisplay.js
@@ -43,10 +45,13 @@ class Extension {
 		);
 	}
 
-    disable() {
-    }
+	disable() {
+		appDisplay._grid._gridModes = this.originalGridModes;
+		AppDisplay.FolderGrid = this.OriginalFolderGrid;
+	}
 }
 
+// eslint-disable-next-line no-unused-vars
 function init() {
 	return new Extension();
 }
