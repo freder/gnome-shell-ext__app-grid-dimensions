@@ -1,4 +1,4 @@
-The GNOME application grid makes infuriatingly little use of the available screen real estate. This extension lets you add more rows and columns.
+The GNOME application grid makes infuriatingly little use of the available screen real estate (– especially the folders). This extension lets you add more rows and columns.
 
 before:
 
