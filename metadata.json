@@ -1,0 +1,8 @@
+{
+  "name": "App Grid Dimensions",
+  "description": "Set number of rows / columns in app overview and app folders",
+  "uuid": "app-grid-dimensions@github.freder",
+  "shell-version": [
+    "40"
+  ]
+}
