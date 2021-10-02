@@ -5,10 +5,10 @@ const AppDisplay = imports.ui.appDisplay;
 
 
 class Extension {
-    constructor() {
-    }
+	constructor() {
+	}
 
-    enable() {
+	enable() {
 		// more rows and columns in application overview grid
 		const { appDisplay } = Main.overview._overview.controls;
 		appDisplay._grid._gridModes.push({ columns: 10, rows: 4 });
@@ -32,12 +32,12 @@ class Extension {
 				}
 			}
 		);
-    }
+	}
 
     disable() {
     }
 }
 
 function init() {
-    return new Extension();
+	return new Extension();
 }
